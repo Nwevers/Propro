@@ -1,0 +1,41 @@
+<html>
+	<head>
+		<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+<script   src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
+	</head>
+	<body>
+		<form>
+			<button class="1">Very low low</button>
+			<button class="2">low low</button>
+			<button class="3">low</button>
+			<button class="4">meh</button>
+			<button class="5">wau</button>
+			<button class="6">Kinda hurts</button>
+			<button class="7">Hurting</button>
+			<button class="8">Man stop the pain</button>
+			<button class="9">Holy shit what the fuck</button>
+			<button class="10">I'm ded</button>
+		</form>
+<script>
+	var classNumber = 0;
+	var feels = 0;
+
+  var socket = io('http://localhost:80');
+  $('button').click(function(e) {
+	  e.preventDefault();
+	  classNumber = $(this).attr('class');
+	    console.log(classNumber);
+  socket.emit('feels', {feel: classNumber});
+
+
+  })
+  socket.on('feeling', function(s) {
+	  console.log(s);
+  })
+  socket.on('news', function (data) {
+    console.log(data);
+  });
+
+</script>
+	</body>
+</html>
